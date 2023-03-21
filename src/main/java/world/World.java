@@ -50,6 +50,10 @@ public class World {
 
     private static final String ACTION_HELP = "help";
 
+    private static final String ACTION_PRESS = "press";
+
+    private static final String ACTION_PUSH = "push";
+
     public TheHero player;
     public List<Entity> entities = new ArrayList<>();
     public boolean gameOver;
@@ -96,7 +100,7 @@ public class World {
         Item scabbard = new Item("scabbard", "An expensive scabbard used to hold weapons.", ItemType.HOLDER);
 
         // Create player
-        player = new TheHero("Hero", "You are the mighty hero of this adventure!", room1);
+        player = new TheHero("Hero", "You are the mighty hero of the legends, Link, the one who repel evil.", room1);
 
         // Create npcs
         NPC ron = new NPC("Ron", "He looks pretty fat.", "Stuck in this room? Check out the "+room2.getName()+". It is to the east.", room1);

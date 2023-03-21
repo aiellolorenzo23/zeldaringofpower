@@ -10,8 +10,12 @@ public class SoundPlayerUsingClip implements Runnable{
 
     @Override
     public void run() {
-        try(FileInputStream fis = new FileInputStream(filePath)){
-            new Player(fis).play();
+        try{
+            while(true) {
+                FileInputStream fis = new FileInputStream(filePath);
+                Player p = new Player(fis);
+                p.play();
+            }
         }catch(Exception e){System.out.println(e);}
     }
 }
