@@ -100,7 +100,7 @@ public class MainGame {
         Thread.sleep(8000);
         System.out.println("This boy, who traveled through time to save the land, was known as the Hero of Time. The boy's tale was passed down through generations until it became legend... \n");
         Thread.sleep(8000);
-        System.out.println("...but many other legends followed him. The spirit of the hero was destined to revive until evil was completely eradicated from the world of light.\n");
+        System.out.println("...but many other legends followed him. The spirit of the Hero was destined to revive until evil was completely eradicated from the world of light.\n");
         Thread.sleep(8000);
         System.out.println("From generation to generation the Hero and Princess Zelda protected the Triforce from the forces of evil, until...\n");
         Thread.sleep(8000);
