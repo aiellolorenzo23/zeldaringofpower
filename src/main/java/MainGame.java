@@ -109,7 +109,7 @@ public class MainGame {
         System.out.println("Ganondorf,, the calamity of the kingdom of Hyrule, the chosen one of the Triforce of strength, deceived the king and his inhabitants by pouring his magical power into a ring. \n" +
                 "A ring with which to dominate the minds of others, the power of awe absolute and destined to last only as long as the life of its own creator would have lasted.\n");
         Thread.sleep(10000);
-        System.out.println("It was then that the Hero of legends found himself alone once again to face the forces of evil.\nBut not even the Hero's courage and Zelda's wisdom were enough to defeat the calamity Ganon...the hero fell, and Ganon claims the Triforce becoming immortal.\n");
+        System.out.println("It was then that the Hero of Legends found himself alone once again to face the forces of evil.\nBut not even the Hero's courage and Zelda's wisdom were enough to defeat the calamity Ganon...the hero fell, and Ganon claims the Triforce becoming immortal.\n");
         Thread.sleep(8000);
         System.out.println("With all her strength left, Zelda imbued her magical power into the Master Sword, it was only a matter of time for a new hero to reclaim this sword to vanquish Ganon's forces and end the cycle of Evil.\n");
         Thread.sleep(8000);
