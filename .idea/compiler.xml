@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JavaZork" />
+        <module name="zeldaringofpower" />
         <module name="TheTinyTinyAdventureOfMonkeyIsland" />
         <module name="ZeldaRingOfPower" />
       </profile>

@@ -38,7 +38,7 @@ public class MainGame {
 
     public static void SplashGame(World world) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
 
-        String filePath = "C:/Users/laiello/Documents/ZeldaRingOfPower/src/main/resources/TLOZALTTP.mp3";
+        String filePath = "C:/Users/lollo/Documents/zeldaringofpower/src/main/resources/The_Legendary_Hero.mp3";
         Runnable run = new SoundPlayerUsingClip(filePath);
         Thread t = new Thread(run);
         t.start();
@@ -87,7 +87,7 @@ public class MainGame {
     }
 
     public static void Prologue() throws InterruptedException {
-        Thread.sleep(6000);
+        Thread.sleep(10000);
         System.out.println("This is but one of the legends of which the people speak...\n");
         Thread.sleep(6000);
         System.out.println("Long ago, there existed a kingdom where a golden power lay hidden.\n" +
@@ -106,18 +106,18 @@ public class MainGame {
         Thread.sleep(8000);
         System.out.println("...the evil being Ganondorf, the reincarnation of the King of the Gerudo's thieves, came into possession of a new magical power.\n");
         Thread.sleep(8000);
-        System.out.println("Ganondorf,, the calamity of the kingdom of Hyrule, the chosen one of the Triforce of strength, deceived the king and his inhabitants by pouring his magical power into a ring. \n" +
+        System.out.println("Ganondorf, the calamity of the kingdom of Hyrule, the chosen one of the Triforce of strength, deceived the king and his inhabitants by pouring his magical power into a ring. \n" +
                 "A ring with which to dominate the minds of others, the power of awe absolute and destined to last only as long as the life of its own creator would have lasted.\n");
-        Thread.sleep(10000);
+        Thread.sleep(12000);
         System.out.println("It was then that the Hero of Legends found himself alone once again to face the forces of evil.\nBut not even the Hero's courage and Zelda's wisdom were enough to defeat the calamity Ganon...the hero fell, and Ganon claims the Triforce becoming immortal.\n");
-        Thread.sleep(8000);
-        System.out.println("With all her strength left, Zelda imbued her magical power into the Master Sword, it was only a matter of time for a new hero to reclaim this sword to vanquish Ganon's forces and end the cycle of Evil.\n");
+        Thread.sleep(10000);
+        System.out.println("With all her strength left, Zelda imbued her magical power into the Master Sword, it was only a matter of time for a new hero to reclaim this sword to vanquish Ganon's forces and end the cycle of evil.\n");
         Thread.sleep(8000);
         System.out.println("Centuries passed, Ganon's dominion had reached the entire World of Light. But one day a new Hero was born again. \n" +
                 "He reclaimed the Master Sword and with the power of the Goddess Hylia, he created a second ring, able to counteract the negative effects of the Ring of Power. \n" +
                 "With such power and the trusty sword at his side, the Hero was ready to face Ganon one last time.\n\n");
-        Thread.sleep(10000);
-        System.out.println("And this is how, at the gates of the Tower of Evil, the last legend of the Hero who repel evil began...\n");
+        Thread.sleep(14000);
+        System.out.println("And this is how, at the gates of the Tower of Evil, the last legend of the Hero who evil's bane began...\n");
         Thread.sleep(6000);
     }
 }
