@@ -1,5 +1,5 @@
 package enums;
 
 public enum ItemType {
-    COMMON, KEY, WEAPON, HOLDER;
+    COMMON, KEY, WEAPON, HOLDER, POWER;
 }

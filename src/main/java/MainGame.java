@@ -1,7 +1,10 @@
-import com.sun.xml.internal.ws.api.ResourceLoader;
-import lombok.Value;
+import enums.EntityType;
+import enums.ItemType;
 import utils.Util;
 import world.World;
+import world.entities.Item;
+import world.entities.Room;
+import world.entities.TheHero;
 import world.globals.Globals;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -12,6 +15,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainGame {
 
@@ -41,17 +45,23 @@ public class MainGame {
             // Parse command
             world.HandleInput(words);
 
-            if(world.player.getLocation().getName().equals("Top of the Tower of Evil")) {
+            TheHero player = world.player;
+            Room location = player.getLocation();
+
+            if(location.getName().equals("Top of the Tower of Evil")) {
                 stopMusic(run,t);
                 File bossMusic = Util.getFileFromResources("GANON.mp3");
                 SoundPlayerUsingClip bossRun = getClip(bossMusic);
                 Thread bt = new Thread(bossRun);
                 bt.start();
+                BossCutscene(player,world);
             }
 
         }
 
         System.out.println("Thanks for playing!");
+
+        System.exit(0);
     }
 
     public static void SplashGame(World world) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException, URISyntaxException {
@@ -139,6 +149,56 @@ public class MainGame {
         Thread.sleep(14000);
         System.out.println("And this is how, at the gates of the Tower of Evil, the last legend of the Hero who evil's bane began...\n");
         Thread.sleep(6000);
+    }
+
+    public static void BossCutscene(TheHero player, World world) throws InterruptedException {
+        Thread.sleep(8000);
+        System.out.println("\nGanondorf: And who you're supposed to be?! ");
+        if(checkItems(ItemType.WEAPON, player)==2) {
+            System.out.println("AHAHAHAHAH Do you think that THAT sword can defeat me? It failed once, and it'll fail again!\n");
+        }
+        else {
+            System.out.println("You have NO POWERS at all! Die!\n");
+            Thread.sleep(4000);
+            System.out.println("Ganondorf blasts the Hero with his powerful magic. The Hero of the Legends fell.\n");
+            Thread.sleep(4000);
+            System.out.println("GAME OVER");
+            world.gameOver = true;
+            return;
+        }
+
+        Thread.sleep(4000);
+        System.out.println("Ganondorf: I'm Immortal, no one can stop me. Even you, or even Zelda.\n");
+        Thread.sleep(4000);
+        System.out.println("Ganondorf: How dare you look at me like this?! ");
+        if(checkItems(ItemType.POWER,player)==2){
+            System.out.println("You stole the Spirituals keys?! You'll regret it, YOU FOOL!\n");
+        }
+        else{
+            System.out.println("You must be a brave man...or A FOOL! I'll end this now!\n");
+            Thread.sleep(4000);
+            System.out.println("Ganondorf blasts the Hero with his powerful magic. The Hero of the Legends fell.\n");
+            Thread.sleep(4000);
+            System.out.println("GAME OVER");
+            world.gameOver = true;
+            return;
+        }
+        Thread.sleep(6000);
+        System.out.println("So come on, bring it on! We'll see if the legends will be true and if that Sword, blessed with theese powers, could defeat me!.\n");
+        Thread.sleep(4000);
+    }
+
+    private static int checkItems(ItemType itemType, TheHero player){
+        AtomicInteger check = new AtomicInteger();
+        player.getContains().forEach(e->{
+            if(e.getType().equals(EntityType.ITEM)){
+                Item item = (Item) e;
+                if(item.getItemType().equals(itemType))
+                    check.getAndIncrement();
+            }
+        });
+
+        return check.get();
     }
 
     private static void stopMusic(SoundPlayerUsingClip clip, Thread t){

@@ -94,9 +94,9 @@ public class World {
         Item rock = new Item("rock", "It's just a simple stupid rock.");
         Item sword = new Item("mastersword", "The Blade of Evil's Bane.", ItemType.WEAPON);
         Item scabbard = new Item("scabbard", "An expensive scabbard used to hold weapons.", ItemType.HOLDER);
-        Item shield = new Item("HylianShield", "A shield wielded by the proud warrios of Hyrule");
-        Item spiritualStone = new Item("WindSpiritualStone", "The spiritual stone of Wind. Use it to overpower your sword.");
-        Item spiritualPearl = new Item("EarthSpiritualPearl", "The spiritual pearl of Earth. Use it to overpower your sword");
+        Item shield = new Item("HylianShield", "A shield wielded by the proud warrios of Hyrule", ItemType.WEAPON);
+        Item spiritualStone = new Item("WindSpiritualStone", "The spiritual stone of Wind. Use it to overpower your sword.", ItemType.POWER);
+        Item spiritualPearl = new Item("EarthSpiritualPearl", "The spiritual pearl of Earth. Use it to overpower your sword", ItemType.POWER);
 
         // Create player
         player = new TheHero("Hero", "You are the mighty hero of the legends, Link, the one who evil's bane.", room1);
@@ -104,6 +104,7 @@ public class World {
         // Create npcs
         NPC owl = new NPC("OwlStatue", "A solid rock statue represents a owl. Seems alive.", "Stuck in this room? Check out the "+room2.getName()+". It is to the east.", room1);
         NPC wizard = new NPC("ChainedWizard", "Bone skin, more bone than skin. He is dressed in a wizard's tunic.", "It's a dangerous place to go alone, be careful! A powerful enemy is waiting for you!", room3);
+        NPC Zelda = new NPC("ZeldaSpirit", "She's the spirit of the Princess Zelda within the Master Sword!", "Be careful Link! To defeat Ganon you must have the powers of Wind and Earth to overpower the Master Sword! Be careful... save Hyrule.", room5);
 
         Item watch = new Item("watch", "The times is "+ Globals.getCurrentTime());
         Item book = new Item("book", "\"Hylia: Myths and History\": and encyclopedia about the legends of Hyrule, pretty interesting.");
@@ -146,6 +147,7 @@ public class World {
         // Add entities to Room 5
         room5.Insert(exitR5toR4);
         room5.Insert(exitR5toR6);
+        room5.Insert(Zelda);
 
         // Add entities to Room 6
         room6.Insert(exitR6toR5);
