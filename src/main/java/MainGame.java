@@ -25,6 +25,11 @@ public class MainGame {
 
         while (!world.isGameOver()) {
 
+            File dungeonMusic = Util.getFileFromResources("TLOZALTTP.mp3");
+            SoundPlayerUsingClip run = getClip(dungeonMusic);
+            Thread t = new Thread(run);
+            t.start();
+
             // Get input
             input = scanner.nextLine();
 
@@ -38,6 +43,14 @@ public class MainGame {
             // Parse command
             world.HandleInput(words);
 
+            if(world.player.getLocation().getName().equals("Top of the Tower of Evil")) {
+                stopMusic(run,t);
+                File bossMusic = Util.getFileFromResources("another.mp3");
+                SoundPlayerUsingClip bossRun = getClip(bossMusic);
+                Thread bt = new Thread(bossRun);
+                bt.start();
+            }
+
         }
 
         System.out.println("Thanks for playing!");
@@ -46,7 +59,7 @@ public class MainGame {
     public static void SplashGame(World world) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException, URISyntaxException {
 
         File prologueFile = Util.getFileFromResources("The_Legendary_Hero.mp3");
-        Runnable run = new SoundPlayerUsingClip(prologueFile);
+        SoundPlayerUsingClip run = getClip(prologueFile);
         Thread t = new Thread(run);
         t.start();
 
@@ -84,7 +97,9 @@ public class MainGame {
         Prologue();
 
         //System.out.println("\tWelcome to The Legend of Zelda - THE RING OF POWER!");
-        System.out.println("------------------------------------------------------------------\n");
+        System.out.println("\n------------------------------------------------------------------\n\n");
+
+        stopMusic(run,t);
 
         String look = "look", room = "room";
         List<String> words = new ArrayList<>();
@@ -126,5 +141,14 @@ public class MainGame {
         Thread.sleep(14000);
         System.out.println("And this is how, at the gates of the Tower of Evil, the last legend of the Hero who evil's bane began...\n");
         Thread.sleep(6000);
+    }
+
+    private static void stopMusic(SoundPlayerUsingClip clip, Thread t){
+        clip.stopMusic();
+        t.interrupt();
+    }
+
+    private static SoundPlayerUsingClip getClip(File file){
+       return new SoundPlayerUsingClip(file);
     }
 }

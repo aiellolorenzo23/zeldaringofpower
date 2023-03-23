@@ -61,12 +61,12 @@ public class World {
     public World() {
 
         // Create rooms
-        Room room1 = new Room("living room", "You are surrounded by medieval paintings.");
-        Room room2 = new Room("forest", "Tall trees are everywhere.");
-        Room room3 = new Room("tower", "You can see the clouds from up here.");
-        Room room4 = new Room("kitchen", "Smells like pizza in here.");
-        Room room5 = new Room("attic", "You are surrounded by ancient stuff.");
-        Room room6 = new Room("dungeon", "It's very dark you can't see anything.");
+        Room room1 = new Room("Entrance of the Tower of Evil", "You are surrounded by medieval paintings.");
+        Room room2 = new Room("Trial room: Wind", "Tall trees are everywhere.");
+        Room room3 = new Room("Trial room: Earth", "You can see the clouds from up here.");
+        Room room4 = new Room("Dark Room", "Smells like pizza in here.");
+        Room room5 = new Room("Stairs", "You are surrounded by ancient stuff.");
+        Room room6 = new Room("Top of the Tower of Evil", "It's very dark you can't see anything.");
 
         // Create exits
         // Room 1
