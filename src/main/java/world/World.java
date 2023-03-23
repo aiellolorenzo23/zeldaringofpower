@@ -112,7 +112,7 @@ public class World {
 
         // Create monsters
         Monster moblin = new Monster("Moblin", "It's staring at you from the shadows, but you can't see it.", room4);
-        Boss ganondorf = new Boss("Ganondorf", "The King of evil, it's playing piano.", room6);
+        Boss Ganondorf = new Boss("Ganondorf", "The King of evil, it's playing piano.", room6);
 
         //Create Q&As
         QAndA gollum = new QAndA();
@@ -149,7 +149,7 @@ public class World {
 
         // Add entities to Room 6
         room6.Insert(exitR6toR5);
-        room6.Insert(ganondorf);
+        room6.Insert(Ganondorf);
 
         // Add all entities to world
         entities.add(room1);
