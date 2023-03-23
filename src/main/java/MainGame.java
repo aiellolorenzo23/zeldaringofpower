@@ -1,16 +1,23 @@
+import com.sun.xml.internal.ws.api.ResourceLoader;
+import lombok.Value;
+import utils.Util;
 import world.World;
 import world.globals.Globals;
 
+import javax.annotation.Resource;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainGame {
 
-    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException, URISyntaxException {
         Scanner scanner = new Scanner(System.in);
         String input;
         World world = new World();
@@ -36,10 +43,10 @@ public class MainGame {
         System.out.println("Thanks for playing!");
     }
 
-    public static void SplashGame(World world) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
+    public static void SplashGame(World world) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException, URISyntaxException {
 
-        String filePath = "C:/Users/lollo/Documents/zeldaringofpower/src/main/resources/The_Legendary_Hero.mp3";
-        Runnable run = new SoundPlayerUsingClip(filePath);
+        File prologueFile = Util.getFileFromResources("The_Legendary_Hero.mp3");
+        Runnable run = new SoundPlayerUsingClip(prologueFile);
         Thread t = new Thread(run);
         t.start();
 
