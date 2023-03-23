@@ -27,7 +27,7 @@ public class NPC extends Creature{
     public void Look_NPC() {
         Look();
         System.out.println(name+" has the following items:");
-        if (Show(new ArrayList<>(), EntityType.ITEM) == 0) { //boh, al posto di arraylist new c'era "contains" ma da dove cazzo viene non si capisce
+        if (Show(new ArrayList<>(), EntityType.ITEM) == 0) {
             System.out.println("No items.");
         }
     }

@@ -6,7 +6,9 @@ import world.entities.*;
 import world.globals.Globals;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class World {
     //#DEFINE variables
@@ -44,6 +46,10 @@ public class World {
 
     private static final String ACTION_TALK = "talk";
     private static final String ACTION_SPEAK = "speak";
+
+    private static final String ACTION_ASK = "ask";
+
+    private static final String ACTION_RIDDLE = "riddle";
 
     public static final String ACTION_EXIT = "exit";
     public static final String ACTION_QUIT = "quit";
@@ -90,7 +96,6 @@ public class World {
         Exit exitR6toR5 = new Exit("door", ExitDescription(room5), Direction.SOUTH, room6, room5);
 
         // Create items
-        Item key = new Item("key", "It's a rusty old key, maybe it can open something.", ItemType.KEY);
         Item rock = new Item("rock", "It's just a simple stupid rock.");
         Item sword = new Item("mastersword", "The Blade of Evil's Bane.", ItemType.WEAPON);
         Item scabbard = new Item("scabbard", "An expensive scabbard used to hold weapons.", ItemType.HOLDER);
@@ -102,7 +107,7 @@ public class World {
         player = new TheHero("Hero", "You are the mighty hero of the legends, Link, the one who evil's bane.", room1);
 
         // Create npcs
-        NPC owl = new NPC("OwlStatue", "A solid rock statue represents a owl. Seems alive.", "Stuck in this room? Check out the "+room2.getName()+". It is to the east.", room1);
+        NPC owl = new NPC("OwlStatue", "A solid rock statue represents a owl. Seems alive.", "Stuck in this room? Check out the "+room3.getName()+". It is to the west. Firs however, you must have the key. If you don't, go to west and then north to find one.", room1);
         NPC wizard = new NPC("ChainedWizard", "Bone skin, more bone than skin. He is dressed in a wizard's tunic.", "It's a dangerous place to go alone, be careful! A powerful enemy is waiting for you!", room3);
         NPC Zelda = new NPC("ZeldaSpirit", "She's the spirit of the Princess Zelda within the Master Sword!", "Be careful Link! To defeat Ganon you must have the powers of Wind and Earth to overpower the Master Sword! Be careful... save Hyrule.", room5);
 
@@ -116,8 +121,70 @@ public class World {
         Boss Ganondorf = new Boss("Ganondorf", "The King of evil, it's playing piano.", room6);
 
         //Create Q&As
-        QAndA gollum = new QAndA();
-        QAndA smeagol = new QAndA();
+        QAndA skullGoron = new QAndA("SkullGoron","Bone skin's Goron. It's staring you with an evil smile.",
+                "Welcome Hero of the Legends, are you here to pick the Spiritual Pearl of Earth, aren't you?\n" +
+                        "You must solve my riddles first to proove you're worthy.\nWhen you're ready, ASK.", room3);
+        QAndA skullRito = new QAndA("SkullRito","Bone skin's Rito. It's staring you with an evil smile.",
+                "Welcome Hero of the Legends, are you here to pick the Spiritual Stone of Wind, aren't you?\n" +
+                        "You must solve my riddles first to proove you're worthy.\nWhen you're ready, ASK.", room2);
+
+        //Create Riddles
+        Map<Integer, String> riddleEarth = new HashMap<>();
+        riddleEarth.put(1,"It cannot be seen, cannot be felt,\n" +
+                "Cannot be heard, cannot be smelt.\n" +
+                "It lies behind stars and under hills,\n" +
+                "And empty holes it fills.\n" +
+                "It comes first and follows after,\n" +
+                "Ends life, kills laughter.");
+        riddleEarth.put(2,"A box without hinges, key, or lid,\n" +
+                "Yet golden treasure inside is hid.");
+        riddleEarth.put(3,"Thirty white horses on a red hill,\n" +
+                "First they champ,\n" +
+                "Then they stamp,\n" +
+                "Then they stand still.");
+        riddleEarth.put(4,"What has roots as nobody sees,\n" +
+                "Is taller than trees,\n" +
+                "Up, up it goes,\n" +
+                "And yet never grows?");
+        skullGoron.setRiddles(riddleEarth);
+
+        Map<Integer, String> riddleWind = new HashMap<>();
+        riddleWind.put(1,"Alive without breath,\n" +
+                "As cold as death;\n" +
+                "Never thirsty, ever drinking,\n" +
+                "All in mail never clinking.");
+        riddleWind.put(2,"This thing all things devours:\n" +
+                "Birds, beasts, trees, flowers;\n" +
+                "Gnaws iron, bites steel;\n" +
+                "Grinds hard stones to meal;\n" +
+                "Slays king, ruins town,\n" +
+                "And beats high mountain down.");
+        riddleWind.put(3,"An eye in a blue face\n" +
+                "Saw an eye in a green face.\n" +
+                "\"That eye is like to this eye\"\n" +
+                "Said the first eye,\n" +
+                "\"But in low place,\n" +
+                "Not in high place.\"");
+        riddleWind.put(4,"Voiceless it cries,\n" +
+                "Wingless flutters,\n" +
+                "Toothless bites,\n" +
+                "Mouthless mutters.");
+        skullRito.setRiddles(riddleWind);
+
+        //Create Answers
+        Map<Integer, String> answerEarth = new HashMap<>();
+        answerEarth.put(1,"Dark");
+        answerEarth.put(2,"An egg");
+        answerEarth.put(3,"Teeth");
+        answerEarth.put(4,"A mountain");
+        skullGoron.setAnswers(answerEarth);
+
+        Map<Integer, String> answerWind = new HashMap<>();
+        answerWind.put(1,"Fish");
+        answerWind.put(2,"Time");
+        answerWind.put(3,"The sun");
+        answerWind.put(4,"Wind");
+        skullRito.setAnswers(answerWind);
 
         // Add entities to Room 1
         room1.Insert(exitR1toR2);
@@ -128,20 +195,19 @@ public class World {
         // Add entities to Room 2
         room2.Insert(exitR2toR1);
         room2.Insert(owl);
-        room2.Insert(smeagol);
+        room2.Insert(skullRito);
         room2.Insert(owl);
         room2.Insert(spiritualStone);
 
         // Add entities to Room 3
         room3.Insert(exitR3toR1);
-        room3.Insert(gollum);
+        room3.Insert(skullGoron);
         room3.Insert(spiritualPearl);
 
         // Add entities to Room 4
         room4.Insert(exitR4toR1);
         room4.Insert(exitR4toR5);
         room4.Insert(wizard);
-        room4.Insert(key);
         room4.Insert(moblin);
 
         // Add entities to Room 5
@@ -175,10 +241,9 @@ public class World {
         entities.add(owl);
         entities.add(wizard);
         entities.add(moblin);
-        entities.add(gollum);
-        entities.add(smeagol);
+        entities.add(skullGoron);
+        entities.add(skullRito);
 
-        entities.add(key);
         entities.add(rock);
         entities.add(sword);
         entities.add(scabbard);

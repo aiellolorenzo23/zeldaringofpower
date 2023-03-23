@@ -281,8 +281,11 @@ public class TheHero extends Creature{
                         if (weapon == getHoldingItem()) {
                             monster.Attack(dir);
                             if (monster.isDead()) {
-                                System.out.println("CONGRATULATIONS! YOU BEAT THE GAME!");
-                                gameOver = true;
+                                //System.out.println("CONGRATULATIONS! YOU BEAT THE GAME!");
+                                //gameOver = true;
+                                System.out.println("A rusty old key revealed!");
+                                Item key = new Item("key", "It's a rusty old key, maybe it can open something.", ItemType.KEY);
+                                this.getLocation().Insert(key);
                             }
                         }
                         else
