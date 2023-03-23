@@ -14,7 +14,7 @@ public class Monster extends Creature{
         this.name = name;
         this.description = description;
         this.location = location;
-        this.type = EntityType.PIRATE;
+        this.type = EntityType.MOBLIN;
     }
 
     public Direction getDirection() {

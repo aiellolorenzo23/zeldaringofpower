@@ -4,13 +4,11 @@ import utils.Util;
 import world.World;
 import world.globals.Globals;
 
-import javax.annotation.Resource;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,12 +21,12 @@ public class MainGame {
         World world = new World();
         SplashGame(world);
 
-        while (!world.isGameOver()) {
+        File dungeonMusic = Util.getFileFromResources("TLOZALTTP.mp3");
+        SoundPlayerUsingClip run = getClip(dungeonMusic);
+        Thread t = new Thread(run);
+        t.start();
 
-            File dungeonMusic = Util.getFileFromResources("TLOZALTTP.mp3");
-            SoundPlayerUsingClip run = getClip(dungeonMusic);
-            Thread t = new Thread(run);
-            t.start();
+        while (!world.isGameOver()) {
 
             // Get input
             input = scanner.nextLine();
@@ -45,7 +43,7 @@ public class MainGame {
 
             if(world.player.getLocation().getName().equals("Top of the Tower of Evil")) {
                 stopMusic(run,t);
-                File bossMusic = Util.getFileFromResources("another.mp3");
+                File bossMusic = Util.getFileFromResources("GANON.mp3");
                 SoundPlayerUsingClip bossRun = getClip(bossMusic);
                 Thread bt = new Thread(bossRun);
                 bt.start();

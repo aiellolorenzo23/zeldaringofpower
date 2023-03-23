@@ -50,10 +50,6 @@ public class World {
 
     private static final String ACTION_HELP = "help";
 
-    private static final String ACTION_PRESS = "press";
-
-    private static final String ACTION_PUSH = "push";
-
     public TheHero player;
     public List<Entity> entities = new ArrayList<>();
     public boolean gameOver;
@@ -61,10 +57,10 @@ public class World {
     public World() {
 
         // Create rooms
-        Room room1 = new Room("Entrance of the Tower of Evil", "You are surrounded by medieval paintings.");
-        Room room2 = new Room("Trial room: Wind", "Tall trees are everywhere.");
-        Room room3 = new Room("Trial room: Earth", "You can see the clouds from up here.");
-        Room room4 = new Room("Dark Room", "Smells like pizza in here.");
+        Room room1 = new Room("Entrance of the Tower of Evil", "Evil's atmosphere. ");
+        Room room2 = new Room("Trial room: Wind", "You are surrounded by strange pillars, a creature staring at you. Behind him a stone full of light lies.");
+        Room room3 = new Room("Trial room: Earth", "There's a strange atmosphere in this room. You can see an artificial sky above, many grey clouds up there. In front of you, a creature staring at you. Behind him, a pearl full of light lies.");
+        Room room4 = new Room("Dark Room", "It's very dark you can't see anything. Smells like death corpse in here. Must be careful.");
         Room room5 = new Room("Stairs", "You are surrounded by ancient stuff.");
         Room room6 = new Room("Top of the Tower of Evil", "It's very dark you can't see anything.");
 
@@ -73,75 +69,87 @@ public class World {
         Exit exitR1toR2 = new Exit("door", ExitDescription(room2), Direction.EAST, room1, room2);
         Exit exitR1toR3 = new Exit("stairs", ExitDescription(room3), Direction.WEST, room1, room3);
         exitR1toR3.setLocked(true);
-        Exit exitR1toR6 = new Exit("door", ExitDescription(room6), Direction.NORTH, room1, room6);
-        exitR1toR6.setLocked(true);
+        Exit exitR1toR4 = new Exit("door", ExitDescription(room6), Direction.NORTH, room1, room4);
 
         // Room 2
         Exit exitR2toR1 = new Exit("window", ExitDescription(room1), Direction.WEST, room2, room1);
 
         // Room 3
-        Exit exitR3toR1 = new Exit("stairs", ExitDescription(room1), Direction.EAST, room3, room1);
-        Exit exitR3toR4 = new Exit("door", ExitDescription(room4), Direction.SOUTH, room3, room4);
-        Exit exitR3toR5 = new Exit("door", ExitDescription(room5), Direction.NORTH, room3, room5);
+        Exit exitR3toR1 = new Exit("door", ExitDescription(room1), Direction.EAST, room3, room1);
 
         // Room 4
-        Exit exitR4toR3 = new Exit("door", ExitDescription(room3), Direction.NORTH, room4, room3);
+        Exit exitR4toR1 = new Exit("door", ExitDescription(room1), Direction.SOUTH, room4, room1);
+        Exit exitR4toR5 = new Exit("stairs", ExitDescription(room5), Direction.NORTH, room4, room5);
 
         // Room 5
-        Exit exitR5toR3 = new Exit("door", ExitDescription(room3), Direction.SOUTH, room5, room3);
+        Exit exitR5toR4 = new Exit("stairs", ExitDescription(room4), Direction.SOUTH, room5, room4);
+        Exit exitR5toR6 = new Exit("door", ExitDescription(room6), Direction.NORTH, room5, room6);
+        exitR5toR6.setLocked(true);
 
         // Room 6
-        Exit exitR6toR1 = new Exit("door", ExitDescription(room1), Direction.SOUTH, room6, room1);
+        Exit exitR6toR5 = new Exit("door", ExitDescription(room5), Direction.SOUTH, room6, room5);
 
         // Create items
         Item key = new Item("key", "It's a rusty old key, maybe it can open something.", ItemType.KEY);
         Item rock = new Item("rock", "It's just a simple stupid rock.");
-        Item sword = new Item("sword", "A greek ancient sword used to kill monsters.", ItemType.WEAPON);
+        Item sword = new Item("mastersword", "The Blade of Evil's Bane.", ItemType.WEAPON);
         Item scabbard = new Item("scabbard", "An expensive scabbard used to hold weapons.", ItemType.HOLDER);
+        Item shield = new Item("HylianShield", "A shield wielded by the proud warrios of Hyrule");
+        Item spiritualStone = new Item("WindSpiritualStone", "The spiritual stone of Wind. Use it to overpower your sword.");
+        Item spiritualPearl = new Item("EarthSpiritualPearl", "The spiritual pearl of Earth. Use it to overpower your sword");
 
         // Create player
-        player = new TheHero("Hero", "You are the mighty hero of the legends, Link, the one who repel evil.", room1);
+        player = new TheHero("Hero", "You are the mighty hero of the legends, Link, the one who evil's bane.", room1);
 
         // Create npcs
-        NPC ron = new NPC("Ron", "He looks pretty fat.", "Stuck in this room? Check out the "+room2.getName()+". It is to the east.", room1);
-        NPC gilbert = new NPC("Gilbert", "He's a very tall man.", "It's a dangerous place to go alone, be careful!", room3);
+        NPC owl = new NPC("OwlStatue", "A solid rock statue represents a owl. Seems alive.", "Stuck in this room? Check out the "+room2.getName()+". It is to the east.", room1);
+        NPC wizard = new NPC("ChainedWizard", "Bone skin, more bone than skin. He is dressed in a wizard's tunic.", "It's a dangerous place to go alone, be careful! A powerful enemy is waiting for you!", room3);
 
         Item watch = new Item("watch", "The times is "+ Globals.getCurrentTime());
-        Item book = new Item("book", "Ancient greek mythology, pretty interesting.");
-        gilbert.Insert(watch);
-        gilbert.Insert(book);
+        Item book = new Item("book", "\"Hylia: Myths and History\": and encyclopedia about the legends of Hyrule, pretty interesting.");
+        wizard.Insert(watch);
+        wizard.Insert(book);
 
         // Create monsters
-        Monster goblin = new Monster("Goblin", "It's staring at you from the shadows, but you can't see it.", room6);
+        Monster moblin = new Monster("Moblin", "It's staring at you from the shadows, but you can't see it.", room4);
+        Boss ganondorf = new Boss("Ganondorf", "The King of evil, it's playing piano.", room6);
+
+        //Create Q&As
+        QAndA gollum = new QAndA();
+        QAndA smeagol = new QAndA();
 
         // Add entities to Room 1
         room1.Insert(exitR1toR2);
         room1.Insert(exitR1toR3);
-        room1.Insert(exitR1toR6);
+        room1.Insert(exitR1toR4);
         room1.Insert(rock);
-        room1.Insert(ron);
 
         // Add entities to Room 2
         room2.Insert(exitR2toR1);
-        room2.Insert(key);
+        room2.Insert(owl);
+        room2.Insert(smeagol);
+        room2.Insert(owl);
+        room2.Insert(spiritualStone);
 
         // Add entities to Room 3
         room3.Insert(exitR3toR1);
-        room3.Insert(exitR3toR4);
-        room3.Insert(exitR3toR5);
-        room3.Insert(gilbert);
+        room3.Insert(gollum);
+        room3.Insert(spiritualPearl);
 
         // Add entities to Room 4
-        room4.Insert(exitR4toR3);
-        room4.Insert(sword);
+        room4.Insert(exitR4toR1);
+        room4.Insert(exitR4toR5);
+        room4.Insert(wizard);
+        room4.Insert(key);
+        room4.Insert(moblin);
 
         // Add entities to Room 5
-        room5.Insert(exitR5toR3);
-        room5.Insert(scabbard);
+        room5.Insert(exitR5toR4);
+        room5.Insert(exitR5toR6);
 
         // Add entities to Room 6
-        room6.Insert(exitR6toR1);
-        room6.Insert(goblin);
+        room6.Insert(exitR6toR5);
+        room6.Insert(ganondorf);
 
         // Add all entities to world
         entities.add(room1);
@@ -153,23 +161,31 @@ public class World {
 
         entities.add(exitR1toR2);
         entities.add(exitR1toR3);
-        entities.add(exitR1toR6);
+        entities.add(exitR1toR4);
         entities.add(exitR2toR1);
         entities.add(exitR3toR1);
-        entities.add(exitR3toR4);
-        entities.add(exitR3toR5);
-        entities.add(exitR4toR3);
-        entities.add(exitR5toR3);
-        entities.add(exitR6toR1);
+        entities.add(exitR4toR1);
+        entities.add(exitR4toR5);
+        entities.add(exitR5toR4);
+        entities.add(exitR5toR6);
+        entities.add(exitR6toR5);
 
-        entities.add(ron);
-        entities.add(gilbert);
-        entities.add(goblin);
+        entities.add(owl);
+        entities.add(wizard);
+        entities.add(moblin);
+        entities.add(gollum);
+        entities.add(smeagol);
 
         entities.add(key);
         entities.add(rock);
         entities.add(sword);
         entities.add(scabbard);
+        entities.add(spiritualStone);
+        entities.add(spiritualPearl);
+
+        player.getContains().add(scabbard);
+        player.getContains().add(sword);
+        player.getContains().add(shield);
 
         // Show init room
         //player.DescribeCurrentRoom();

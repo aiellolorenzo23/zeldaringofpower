@@ -29,7 +29,9 @@ public class TheHero extends Creature{
         if (Show(getLocation().getContains(), EntityType.ITEM) == 0)
             System.out.println("No items.");
         Show(getLocation().getContains(), EntityType.NPC);
-        Show(getLocation().getContains(), EntityType.PIRATE);
+        Show(getLocation().getContains(), EntityType.MOBLIN);
+        Show(getLocation().getContains(), EntityType.GANON);
+
     }
 
     public void Inventory() {
@@ -473,7 +475,7 @@ public class TheHero extends Creature{
         // Search for entities
         for (Entity e : location.getContains()) {
 
-            if (e.getType() == EntityType.PIRATE) {
+            if (e.getType() == EntityType.MOBLIN || e.getType() == EntityType.GANON) {
                 monster = (Monster)e;
                 break;
             }

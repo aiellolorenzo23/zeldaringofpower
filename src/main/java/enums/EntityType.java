@@ -1,5 +1,5 @@
 package enums;
 
 public enum EntityType {
-    NPC, PLAYER, EXIT, ROOM, ITEM, PIRATE;
+    NPC, PLAYER, EXIT, ROOM, ITEM, MOBLIN, GANON;
 }
